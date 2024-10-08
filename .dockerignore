@@ -1,0 +1,13 @@
+# Bỏ qua các file và thư mục không cần thiết
+in
+out
+.git
+.gitignore
+node_modules
+vendor
+*.log
+*.tmp
+*.swp
+*.bak
+*.old
+*.DS_Store

@@ -9,8 +9,9 @@ import (
 
 func main() {
 	// Đọc từ tham số dòng lệnh
-	inputDir := flag.String("in", "", "Thư mục đầu vào")
-	outputDir := flag.String("out", "", "Thư mục đầu ra")
+	inputDir := flag.String("in", "", "input folder")
+	outputDir := flag.String("out", "", "output folder")
+	lossyQuality := flag.Int("lossyQuality", 80, "lossy quality")
 	flag.Parse()
 
 	// Gán giá trị mặc định nếu thiếu tham số đầu vào
@@ -21,10 +22,6 @@ func main() {
 		*outputDir = "./out"
 	}
 
-	//ConvertFolderToWebP(inputDir, outputDir, KolesaConvert)
-	//ConvertFolderToWebP(inputDir, outputDir, ChaiConvert)
-	//ConvertFolderToWebP(inputDir, outputDir, gm_convert)
-	//ConvertFolderToWebP(inputDir, outputDir, cweb_convert)
-	imageconvert.ConvertFolderToWebP(*inputDir, *outputDir, imageconvert.VipsConvert, 80)
+	imageconvert.ConvertFolderToWebP(*inputDir, *outputDir, imageconvert.VipsConvert, *lossyQuality)
 	defer vips.Shutdown()
 }

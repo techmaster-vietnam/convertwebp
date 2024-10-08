@@ -50,7 +50,7 @@ func ConvertFolderToWebP(
 			// Lấy tên file từ inputFile
 			fileName := filepath.Base(path)
 			// Tạo đường dẫn outputFile mới
-			outputFile := filepath.Join(outputDir, strings.TrimSuffix(fileName, filepath.Ext(fileName))+".webp")
+			outputFile := filepath.Join(outputDirPath, strings.TrimSuffix(fileName, filepath.Ext(fileName))+".webp")
 			// Gọi hàm chuyển đổi
 			if err := convertFunction(path, outputFile, lossyQuality); err != nil {
 				fmt.Println(err)

@@ -9,5 +9,5 @@ func init() {
 		CollectStats:     false,
 	}
 	vips.Startup(&config)
-	vips.LoggingSettings(LoggingHandlerFunction, vips.LogLevelCritical)
+	vips.LoggingSettings(LoggingHandlerFunction, vips.LogLevelError)
 }
