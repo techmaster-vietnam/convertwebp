@@ -1,11 +1,13 @@
 # Convert image to webp
 
-## Install
+## Chức năng chính
+- Convert tất cả các file ảnh (gif, jpeg, jpg, png) trong folder `in` sang định dạng WebP rồi lưu vào folder `out`
+- Nếu file đã ở định dạng WebP hay PDF thì copy luôn, không resize, không convert
+- Nếu file có kích thước rộng > 1024px hoặc cao > 768px thì resize về để nhỏ hơn 1024x768px, giữ nguyên tỷ lệ rồi mới convert
+- Những file định dạng khác thì copy nguyên từ `in` sang `out`
 
-Cần cài đặt những thư viện sau đây:
-* webp
-* vips
-* graphicsmagick
+## Install
+Chỉ cần cài đặt duy nhất thư viện`vips`
 
 ### In Alpine
 ```
