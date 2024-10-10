@@ -38,7 +38,7 @@ func VipsConvertCopy(inputFile string, outputDirPath string, lossyQuality int) e
 			return err
 		}
 	}
-
+	defer imageRef.Close()
 	//Nếu file đã ở định dạng WEBP hay PDF thì copy luôn, không convert
 	if imageRef.Format() == vips.ImageTypeWEBP || imageRef.Format() == vips.ImageTypePDF {
 		outputFile = filepath.Join(outputDirPath, fileName)
@@ -49,7 +49,6 @@ func VipsConvertCopy(inputFile string, outputDirPath string, lossyQuality int) e
 		return nil
 	}
 
-	defer imageRef.Close()
 	isAnimatedGif := false
 	if imageRef.Format() == vips.ImageTypeGIF {
 		// Kiểm tra số frame để xác định ảnh gif động

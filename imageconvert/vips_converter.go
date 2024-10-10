@@ -9,6 +9,10 @@ import (
 	"github.com/davidbyttow/govips/v2/vips"
 )
 
+/*
+Hàm này sẽ convert tất cả các file ảnh khác WEBP và PDF về WEBP
+Nếu là gif động thì không resize, convert luôn
+*/
 func VipsConvert(inputFile string, outputFile string, lossyQuality int) error {
 	// Lấy extension của file
 	ext := strings.ToLower(filepath.Ext(inputFile))
@@ -19,6 +23,16 @@ func VipsConvert(inputFile string, outputFile string, lossyQuality int) error {
 		return err
 	}
 	defer imageRef.Close()
+
+	//Nếu file đã ở định dạng WEBP hay PDF thì copy luôn, không convert
+	if imageRef.Format() == vips.ImageTypeWEBP || imageRef.Format() == vips.ImageTypePDF {
+		err := copyFile(inputFile, outputFile)
+		if err != nil {
+			return fmt.Errorf("failed to copy file %s to %s: %v", inputFile, outputFile, err)
+		}
+		return nil
+	}
+
 	isAnimatedGif := false
 	if ext == ".gif" {
 		// Kiểm tra số frame để xác định ảnh gif động
