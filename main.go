@@ -22,6 +22,8 @@ func main() {
 		*outputDir = "./out"
 	}
 
-	imageconvert.ConvertFolderToWebP(*inputDir, *outputDir, imageconvert.VipsConvert, *lossyQuality)
+	//imageconvert.ConvertFolderToWebP(*inputDir, *outputDir, imageconvert.VipsConvert, *lossyQuality)
+
+	imageconvert.ConvertCopyToWebP(*inputDir, *outputDir, imageconvert.VipsConvertCopy, *lossyQuality)
 	defer vips.Shutdown()
 }

@@ -2,7 +2,7 @@
 FROM golang:alpine AS builder
 
 # Cài đặt thư viện vips
-RUN apk add musl-dev vips-dev gcc
+RUN apk add musl-dev vips-dev gcc upx
 
 # Tạo thư mục làm việc
 WORKDIR /app
@@ -19,7 +19,7 @@ COPY . .
 RUN go mod tidy
 
 # Biên dịch ứng dụng
-RUN go build -o myapp
+RUN go build -o myapp && upx -9 myapp
 
 # Tạo một image nhỏ hơn để chạy ứng dụng
 FROM alpine:latest
