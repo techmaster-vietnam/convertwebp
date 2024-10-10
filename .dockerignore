@@ -11,3 +11,4 @@ vendor
 *.bak
 *.old
 *.DS_Store
+*.md
